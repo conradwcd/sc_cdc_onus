@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>ONUS SuperCash Countdown Clock Generator</title>
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <span>ONUS SuperCash Countdown Clock Generator</span>
+    </nav>
+  </header>
+
+
+<table width="100%">
+  <tr>
+    <td width="35%">
+      <div class="enterForm">
+        Shell Name:<br />
+        <input class="input" type="text" id="shellName" name="shellName" placeholder="Shell Name" class="css-input">
+        <br /><br />
+        Enter Copied Text from MI Clipboard:<br />
+        <textarea rows="15" cols="80" id="copiedMI"></textarea>
+        <br /><br />
+        Countdown Timer (Left) Width:<br />
+        <input class="input" type="text" id="leftAssetWidth" name="leftAssetWidth" placeholder="Left Asset Width" class="css-input">
+        <br /><br />
+        Milliseconds Animation - GIF (Right) Width:<br />
+        <input class="input" type="text" id="rightAssetWidth" name="rightAssetWidth" placeholder="Right Asset Width" class="css-input">
+      </div>
+    </td>
+    <td width="65%" style="vertical-align: top;">
+      <button id="launch">Build HTML</button><br />
+      <div class="output">
+        <textarea rows="30" cols="80" id="formatted"></textarea>
+      </div>
+    </td>
+  </tr>
+</table>
+
+  <div id="copy-selection-block" style="display: none;">
+    <p style="font-style: italic; font-size: .8em;">Selection has been copied!</p>
+  </div>
+
+</body>
+
+<script type="text/javascript">
+  var string = ``;
+  var urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&#\/%?=~_|!:,.;()@]*[-A-Z0-9+&@#\/%=~_|])/ig;
+  var miList, legalMIImgSrc, cdcHref, cdcImgLeft, cdcImgRight
+
+  var shellName = document.querySelector("#shellName");
+  //alert(shellName);
+  var leftAssetWidth = document.querySelector("#leftAssetWidth");
+  var rightAssetWidth = document.querySelector("#rightAssetWidth");
+  var formatted = document.querySelector("#formatted");
+  var launch = document.querySelector("#launch");
+  if (launch) {
+    launch.addEventListener("click", writeHTML, false);
+  }
+
+  function writeHTML() {
+    // reset
+    document.getElementById("formatted").innerHTML = "";
+    var miList = [];
+
+    // get MI URLs and remove the last Campaign Tracking Pixel URL from constructed miList Array
+    var string = document.getElementById("copiedMI").value;
+    var miList = string.match(urlRegex);
+    miList.pop();
+
+    // get and assign tod href, tod img, and legal URLs
+    var cdcHref = miList[miList.length - 4];
+    var cdcImgLeft = miList[miList.length - 3];
+    var cdcImgRight = miList[miList.length - 1];
+    //alert(miList);
+    var copyStory = "";
+
+    copyStory += "%%[ /* " + shellName.value + " */ \n\n";
+    copyStory += "/* CONTENT INFO */ \n";
+    copyStory += "set @creativeName = \" \" \n";
+    copyStory += "set @contentAreaName = \"" + shellName.value + "\" \n\n";
+    copyStory += "]%% \n\n"
+    copyStory += "<table class=\"wrapper\" width=\"640\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\"> \n"
+    copyStory += "\u00A0\u00A0<tr> \n"
+    copyStory += "\u00A0\u00A0\u00A0\u00A0<td> \n"
+    copyStory += "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0<table align=\"center\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"> \n"
+    copyStory += "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0<tr> \n"
+    copyStory += "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0<td valign=\"top\"><a href=\"" + cdcHref + "\" target=\"_blank\" alias=\"%%=v(@alias)=%%\"><img src=\"" + cdcImgLeft + "\" width=\"" + leftAssetWidth.value + "\" style=\"display:block; font-family:Arial,Helvetica,sans-serif; font-size:10px; color:#000000; font-weight:bold;\" border=\"0\" class=\"photo\" /></a></td>\n"
+    copyStory += "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0<td valign=\"top\"><a href=\"" + cdcHref + "\" target=\"_blank\" alias=\"%%=v(@alias)=%%\"><img src=\"" + cdcImgRight + "\" width=\"" + rightAssetWidth.value + "\" style=\"display:block; font-family:Arial,Helvetica,sans-serif; font-size:10px; color:#000000; font-weight:bold;\" border=\"0\" class=\"photo\" /></a></td>\n"
+    copyStory += "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0</tr> \n"
+    copyStory += "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0</table> \n"
+    copyStory += "\u00A0\u00A0\u00A0\u00A0</td> \n"
+    copyStory += "\u00A0\u00A0</tr> \n"
+    copyStory += "</table> \n\n"
+
+    formatted.innerHTML = copyStory;
+  }
+</script>
+
+</html>
