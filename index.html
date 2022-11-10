@@ -22,6 +22,9 @@
         Shell Name:<br />
         <input class="input" type="text" id="shellName" name="shellName" placeholder="Shell Name" class="css-input">
         <br /><br />
+        Creative Name:<br />
+        <input class="input" type="text" id="creativeName" name="creativeName" placeholder="Creative Name" class="css-input">
+        <br /><br />
         Enter Copied Text from MI Clipboard:<br />
         <textarea rows="15" cols="80" id="copiedMI"></textarea>
         <br /><br />
@@ -81,7 +84,7 @@
 
     copyStory += "%%[ /* " + shellName.value + " */ \n\n";
     copyStory += "/* CONTENT INFO */ \n";
-    copyStory += "set @creativeName = \" \" \n";
+    copyStory += "set @creativeName = \"" + creativeName.value + "\" \n";
     copyStory += "set @contentAreaName = \"" + shellName.value + "\" \n\n";
     copyStory += "]%% \n\n"
     copyStory += "<table class=\"wrapper\" width=\"640\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\"> \n"
