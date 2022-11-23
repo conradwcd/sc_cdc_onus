@@ -76,8 +76,9 @@
     miList.pop();
 
     // get and assign tod href, tod img, and legal URLs
-    var cdcHref = miList[miList.length - 4];
+    var cdcHrefLeft = miList[miList.length - 4];
     var cdcImgLeft = miList[miList.length - 3];
+    var cdcHrefRight = miList[miList.length - 2];
     var cdcImgRight = miList[miList.length - 1];
     //alert(miList);
     var copyStory = "";
@@ -92,8 +93,8 @@
     copyStory += "    <td> \n"
     copyStory += "      <table align=\"center\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"> \n"
     copyStory += "        <tr> \n"
-    copyStory += "          <td valign=\"top\"><a href=\"" + cdcHref + "\" target=\"_blank\" alias=\"%%=v(@alias)=%%\"><img src=\"" + cdcImgLeft + "\" width=\"" + leftAssetWidth.value + "\" style=\"display:block; font-family:Arial,Helvetica,sans-serif; font-size:10px; color:#000000; font-weight:bold;\" border=\"0\" class=\"photo\" /></a></td>\n"
-    copyStory += "          <td valign=\"top\"><a href=\"" + cdcHref + "\" target=\"_blank\" alias=\"%%=v(@alias)=%%\"><img src=\"" + cdcImgRight + "\" width=\"" + rightAssetWidth.value + "\" style=\"display:block; font-family:Arial,Helvetica,sans-serif; font-size:10px; color:#000000; font-weight:bold;\" border=\"0\" class=\"photo\" /></a></td>\n"
+    copyStory += "          <td valign=\"top\"><a href=\"" + cdcHrefLeft + "\" target=\"_blank\" alias=\"%%=v(@alias)=%%\"><img src=\"" + cdcImgLeft + "\" width=\"" + leftAssetWidth.value + "\" style=\"display:block; font-family:Arial,Helvetica,sans-serif; font-size:10px; color:#000000; font-weight:bold;\" border=\"0\" class=\"photo\" /></a></td>\n"
+    copyStory += "          <td valign=\"top\"><a href=\"" + cdcHrefRight + "\" target=\"_blank\" alias=\"%%=v(@alias)=%%\"><img src=\"" + cdcImgRight + "\" width=\"" + rightAssetWidth.value + "\" style=\"display:block; font-family:Arial,Helvetica,sans-serif; font-size:10px; color:#000000; font-weight:bold;\" border=\"0\" class=\"photo\" /></a></td>\n"
     copyStory += "        </tr> \n"
     copyStory += "      </table> \n"
     copyStory += "    </td> \n"
